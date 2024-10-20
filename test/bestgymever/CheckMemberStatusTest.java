@@ -32,7 +32,7 @@ public class CheckMemberStatusTest {
         assertEquals(14, list.size());
     }
 
-    //kontrollerar att det första Person-objektet i arraylisten blivit korrekt inläst
+    //kontrollerar att det första Person-objektet i arraylisten blivit korrekt inläst och behandlat
     @Test
     final void testFirstPerson() {
         //tar ut den första personen ur arrayList
@@ -42,7 +42,7 @@ public class CheckMemberStatusTest {
         assertEquals("2024-07-01", person1.getDate());
     }
 
-    //kontrollerar att det sista Person-objektet i arraylisten blivit korrekt inläst
+    //kontrollerar att det sista Person-objektet i arraylisten blivit korrekt inläst och behandlat
     @Test
     final void testLastPerson() {
         //tar ut den sista personen ur arrayList
@@ -70,7 +70,7 @@ public class CheckMemberStatusTest {
         assertFalse(c1.compareDates(threeMonthsAgoString));
     }
 
-    //kontrollerar utskriften för giltig medlem
+    //kontrollerar terminalutskriften för giltig medlem
     @Test
     void testOutputValidMember() {
         assertEquals(1, c1.search(list, "7911061234"));
@@ -79,7 +79,7 @@ public class CheckMemberStatusTest {
         assertNotEquals(4, c1.search(list, "7911061234"));
     }
 
-    //kontrollerar utskriften för tidigare medlem
+    //kontrollerar terminalutskriften för tidigare medlem
     @Test
     void testOutputPreviousMember() {
         assertEquals(2, c1.search(list, "5711121234"));
@@ -88,7 +88,7 @@ public class CheckMemberStatusTest {
         assertNotEquals(4, c1.search(list, "5711121234"));
     }
 
-    //kontrollerar utskriften vid tom inmatning eller blanksteg
+    //kontrollerar terminalutskriften vid tom inmatning eller blanksteg
     @Test
     void testOutputIfEmptyInput() {
         assertEquals(3, c1.search(list, ""));
@@ -96,7 +96,7 @@ public class CheckMemberStatusTest {
         assertNotEquals(3, c1.search(list, "vadsomhelst"));
     }
 
-    //kontrollerar utskriften för obehörig person
+    //kontrollerar terminalutskriften för obehörig person
     @Test
     void testOutputUnauthorized() {
         assertEquals(4, c1.search(list, "9001191234"));

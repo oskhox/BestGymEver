@@ -2,22 +2,23 @@ package bestgymever;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.*;
-import java.time.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CheckMemberStatus {
-    Path inpath;
+    Path inpath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");;
 
     List<Person> allPersons;
     private Person matchedMember; //håller matchad person för senare utskrift
 
-    //konstruktor som skapar upp path och lagrar resultatet av readFile i instansvariabeln allPersons
+    //konstruktor som lagrar resultatet av readFile i instansvariabeln allPersons
     CheckMemberStatus() {
-        inpath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");
-        this.allPersons = readFile(inpath);
+        this.allPersons = readFile(getInpath());
     }
 
     public Path getInpath() {

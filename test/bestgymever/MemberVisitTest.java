@@ -40,9 +40,10 @@ public class MemberVisitTest {
             lineInFile = br.readLine();
         } catch (IOException e) {
             System.out.println("Fel vid läsning av fil.");
+            e.printStackTrace();
         }
 
-        //hämtar nuvarande tid, formaterar, och lagrar
+        //hämtar nuvarande tid, formaterar, och lagrar i sträng
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String expectedDateTime = now.format(formatter);
@@ -56,6 +57,7 @@ public class MemberVisitTest {
             Files.writeString(testPath, "");
         } catch (IOException e) {
             System.out.println("Fel vid rensning av testfil.");
+            e.printStackTrace();
         }
     }
 }

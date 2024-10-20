@@ -7,7 +7,7 @@ public class UserInteractionTest
 {
     UserInteraction ui = new UserInteraction();
 
-    //testar att hjälpmetoden returnerar false om tom
+    //testar att hjälpmetoden returnerar false om tom input
     @Test
     final void checkYesNoInputEmptyString() {
         assertFalse(ui.checkYesNoInput(" "));
