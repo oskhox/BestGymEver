@@ -12,7 +12,7 @@ public class CheckMemberStatusTest {
 
     //skapar upp en instans av produktionsklassen
     CheckMemberStatus c1 = new CheckMemberStatus();
-    //skapar upp en testPath där testfilen har persondata
+    //skapar upp en testPath där testfilen också har persondata
     Path testPath = Paths.get("test/bestgymever/test_data.txt");
     //anropar produktionsmetoden och skickar in testdata
     List<Person> list = c1.readFile(testPath);

@@ -23,5 +23,4 @@ public class Person {
     public String getDate() {
         return date;
     }
-
 }

@@ -52,7 +52,7 @@ public class MemberVisitTest {
         String expectedOutput = "Medlemmen " + mockName + " med personnummer " + mockPersonID + " checkade in " + expectedDateTime + ".";
         assertEquals(expectedOutput, lineInFile);
 
-        //rensar filen när testet är klart, inför nästa test
+        //rensar testfilen när testet är klart, inför nästa test
         try {
             Files.writeString(testPath, "");
         } catch (IOException e) {
