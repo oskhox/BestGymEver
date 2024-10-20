@@ -1,7 +1,6 @@
 package bestgymever;
 
 public class GymProgram {
-    //tillagd kommentar
 
     public GymProgram() {
         UserInteraction ui = new UserInteraction();

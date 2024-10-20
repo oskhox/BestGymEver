@@ -2,9 +2,9 @@ package bestgymever;
 
 public class Person {
 
-    private String personID;
-    private String name;
-    private String date;
+    private final String personID;
+    private final String name;
+    private final String date;
 
     public Person(String personID, String name , String date) {
         this.personID = personID;
@@ -16,24 +16,12 @@ public class Person {
         return personID;
     }
 
-    //rensa setters?
-    public void setPersonID(String personID) {
-        this.personID = personID;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 }

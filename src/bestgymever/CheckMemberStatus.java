@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckMemberStatus {
-    List<Person> allPersons; //den färdiga listan som kan användas till sökning sen
+    List<Person> allPersons;
 
     //konstruktor som skapar upp path och lagrar resultatet av readFile i instansvariabeln allPersons
     CheckMemberStatus() {
@@ -50,7 +50,8 @@ public class CheckMemberStatus {
     //söker igenom listan efter matchning på personnummer eller namn
     public int search(List<Person> fullList, String searchTerm) {
         for (Person person : fullList) {
-            if (person.getPersonID().toLowerCase().contains(searchTerm) || person.getName().toLowerCase().contains(searchTerm)) {
+            if (person.getPersonID().toLowerCase().contains(searchTerm) && (!searchTerm.trim().isEmpty())
+                    || person.getName().toLowerCase().contains(searchTerm) && (!searchTerm.trim().isEmpty())) {
                 //anropar datummetoden och skickar in person.date
                 boolean hasValidMembershipDate = compareDates(person.getDate());
                 //om medlemskapet är giltigt
@@ -62,19 +63,21 @@ public class CheckMemberStatus {
                 }
             }
         }
-        //om ingen matchning alls i sökningen så returnerar alltid 3
-        return 3;
+        //om söktermen är tom
+        if (searchTerm.trim().isEmpty()) {
+            return 3;
+        }
+        //om ingen matchning alls i sökningen
+        return 4;
     }
 
     //jämför datum och skickar true om datumet är inom ett år från idag, false om mer än ett år
     public boolean compareDates(String personDate) {
-        //skapar en egen formaterare
+        //skapar en egen formaterare och LocalDate från personens datum
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //skapar en LocalDate från datumet i person-objektet
         LocalDate personLocalDate = LocalDate.parse(personDate, formatter);
-        //läser in dagens datum
+        //läser in dagens datum samt för ett år sedan
         LocalDate todayDate = LocalDate.now();
-        //läser in datumet för att år sedan
         LocalDate oneYearAgo = todayDate.minusYears(1);
         //kontrollerar om personens datum är inom ett år sedan
         return personLocalDate.isAfter(oneYearAgo);

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class UserInteraction {
 
-
     public boolean checkYesNoInput(String input) {
         if (input.trim().isEmpty()) {
             System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen.");
@@ -41,15 +40,16 @@ public class UserInteraction {
                         case 1 -> {
                             System.out.println("Kunden är en nuvarande medlem. Årsavgiften är betald det senare året." +
                                     " Incheckningen är registrerad i PT-filen.");
-                            MemberVisit m1 = new MemberVisit();
+                            MemberVisit m1 = new MemberVisit(); //skapar up MemberVisit-filen och låta konstruktorn göra sitt jobb.
                         }
                         case 2 ->
                                 System.out.println("Kunden är en före detta medlem. Årsavgiften betalades för mer än ett år sedan.");
                         case 3 ->
+                                System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen..");
+                        case 4 ->
                                 System.out.println("Personen inte finns i filen och har sålunda aldrig varit medlem och är obehörig.");
                     }
                     //AVSLUTA PROGRAMMET
-                    //om svarar nej, frågar om vill avsluta programmet
                 } else if (firstReply.equalsIgnoreCase("nej")) {
                     System.out.println("Vill du avsluta programmet, Skriv ja eller nej:");
                     String thirdReply = input.nextLine();

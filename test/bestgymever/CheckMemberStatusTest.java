@@ -21,7 +21,7 @@ public class CheckMemberStatusTest {
         assertEquals(14, list.size());
     }
 
-    //kontrollerar att första Person-objektet i arraylisten blivit korrekt inläst
+    //kontrollerar att det första Person-objektet i arraylisten blivit korrekt inläst
     @Test
     final void testFirstPerson() {
         //tar ut den första personen ur arrayList
@@ -47,6 +47,7 @@ public class CheckMemberStatusTest {
         assertEquals(1, c1.search(list, "7911061234"));
         assertNotEquals(2, c1.search(list, "7911061234"));
         assertNotEquals(3, c1.search(list, "7911061234"));
+        assertNotEquals(4, c1.search(list, "7911061234"));
     }
 
     //kontrollerar utskriften för tidigare medlem
@@ -55,13 +56,23 @@ public class CheckMemberStatusTest {
         assertEquals(2, c1.search(list, "5711121234"));
         assertNotEquals(1, c1.search(list, "5711121234"));
         assertNotEquals(3, c1.search(list, "5711121234"));
+        assertNotEquals(4, c1.search(list, "5711121234"));
+    }
+
+    //kontrollerar utskriften vid tom inmatning eller blanksteg
+    @Test
+    void testOutputIfEmptyInput() {
+        assertEquals(3, c1.search(list, ""));
+        assertEquals(3, c1.search(list, " "));
+        assertNotEquals(3, c1.search(list,"vadsomhelst"));
     }
 
     //kontrollerar utskriften för obehörig person
     @Test
     void testOutputUnauthorized() {
-        assertEquals(3, c1.search(list, "9001191234"));
+        assertEquals(4, c1.search(list, "9001191234"));
         assertNotEquals(1, c1.search(list, "9001191234"));
         assertNotEquals(2, c1.search(list, "9001191234"));
+        assertNotEquals(3, c1.search(list, "9001191234"));
     }
 }
