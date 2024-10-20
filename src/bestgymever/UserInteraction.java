@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class UserInteraction {
 
+
     public boolean checkYesNoInput(String input) {
         if (input.trim().isEmpty()) {
             System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen.");
@@ -16,12 +17,10 @@ public class UserInteraction {
         return true;
     }
 
-    //logiken för terminalprogrammet
     public void ask() {
         try (Scanner input = new Scanner(System.in)) {
             boolean keepAsking = true;
-
-            //användaren frågas i en loop
+            //KONTROLL AV MEDLEMSKAP
             while (keepAsking) {
                 System.out.println("Vill du kontrollera någons medlemskap? Skriv ja eller nej:");
                 String firstReply = input.nextLine();
@@ -39,37 +38,27 @@ public class UserInteraction {
 
                     //skriver ut beroende vad som returneras
                     switch (validationResponse) {
-                        case 1 ->
-                                System.out.println("Kunden är en nuvarande medlem. Årsavgiften är betald det senare året.");
+                        case 1 -> {
+                            System.out.println("Kunden är en nuvarande medlem. Årsavgiften är betald det senare året." +
+                                    " Incheckningen är registrerad i PT-filen.");
+                            MemberVisit m1 = new MemberVisit();
+                        }
                         case 2 ->
                                 System.out.println("Kunden är en före detta medlem. Årsavgiften betalades för mer än ett år sedan.");
                         case 3 ->
                                 System.out.println("Personen inte finns i filen och har sålunda aldrig varit medlem och är obehörig.");
                     }
-
-                    //om nej, frågar om vill registrera ett besök istället
+                    //AVSLUTA PROGRAMMET
+                    //om svarar nej, frågar om vill avsluta programmet
                 } else if (firstReply.equalsIgnoreCase("nej")) {
-                    System.out.println("Vill du registrera ett besök? Skriv ja eller nej:");
-                    String secondReply = input.nextLine();
-                    if (!checkYesNoInput(secondReply)) {
+                    System.out.println("Vill du avsluta programmet, Skriv ja eller nej:");
+                    String thirdReply = input.nextLine();
+                    if (!checkYesNoInput(thirdReply)) {
                         continue;
                     }
-
-                    //anropar MemberVisits konstruktor om svaret är ja
-                    if (secondReply.equalsIgnoreCase("ja")) {
-                        MemberVisit m1 = new MemberVisit();
-
-                        //om svarar nej, frågar om vill avsluta programmet
-                    } else if (secondReply.equalsIgnoreCase("nej")) {
-                        System.out.println("Vill du avsluta programmet, Skriv ja eller nej:");
-                        String thirdReply = input.nextLine();
-                        if (!checkYesNoInput(thirdReply)) {
-                            continue;
-                        }
-                        if (thirdReply.equalsIgnoreCase("ja")) {
-                            System.out.println("Programmet avslutas.");
-                            keepAsking = false;
-                        }
+                    if (thirdReply.equalsIgnoreCase("ja")) {
+                        System.out.println("Programmet avslutas.");
+                        keepAsking = false;
                     }
                 }
             }
