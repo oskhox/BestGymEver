@@ -13,12 +13,14 @@ import java.util.List;
 public class CheckMemberStatus {
     Path inpath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");;
 
+    //lagrar hela listan med nuvarande och tidigare medlemmar när konstruktorn har körts
     List<Person> allPersons;
-    private Person matchedMember; //håller matchad person för senare utskrift
+    //håller matchad person för senare utskrift
+    private Person matchedMember;
 
     //konstruktor som lagrar resultatet av readFile i instansvariabeln allPersons
     CheckMemberStatus() {
-        this.allPersons = readFile(getInpath());
+        this.allPersons = readFile(inpath);
     }
 
     public Path getInpath() {

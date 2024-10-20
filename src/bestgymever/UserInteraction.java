@@ -41,13 +41,13 @@ public class UserInteraction {
                             System.out.println("Kunden är en nuvarande medlem. Årsavgiften är betald det senare året.");
                             //hämtar matchad person
                             Person matched = c1.getMatchedMember();
-                            //skapar först upp MemberVisit-filen
+                            //skapar först upp en ny MemberVisit
                             MemberVisit m1 = new MemberVisit();
                             m1.addCheckIn(m1.getOutPath(), matched.getName(), matched.getPersonID());
                         }
                         case 2 ->
                                 System.out.println("Kunden är en före detta medlem. Årsavgiften betalades för mer än ett år sedan.");
-                        case 3 -> System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen..");
+                        case 3 -> System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen.");
                         case 4 ->
                                 System.out.println("Personen inte finns i filen och har sålunda aldrig varit medlem och är obehörig.");
                     }
