@@ -2,12 +2,8 @@ package bestgymever;
 
 public class GymProgram {
 
-    public GymProgram() {
+    public static void main(String[] args) {
         UserInteraction ui = new UserInteraction();
         ui.ask();
-    }
-
-    public static void main(String[] args) {
-        new GymProgram();
     }
 }

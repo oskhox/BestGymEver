@@ -9,12 +9,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckMemberStatus {
+    Path inpath;
+
     List<Person> allPersons;
+    private Person matchedMember; //håller matchad person för senare utskrift
 
     //konstruktor som skapar upp path och lagrar resultatet av readFile i instansvariabeln allPersons
     CheckMemberStatus() {
-        Path inpath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");
+        inpath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");
         this.allPersons = readFile(inpath);
+    }
+
+    public Path getInpath() {
+        return inpath;
+    }
+
+    //hämta matchad person som ska skrivas ut
+    public Person getMatchedMember() {
+        return matchedMember;
     }
 
     //readFile som sköter inläsningen av filen
@@ -56,6 +68,7 @@ public class CheckMemberStatus {
                 boolean hasValidMembershipDate = compareDates(person.getDate());
                 //om medlemskapet är giltigt
                 if (hasValidMembershipDate) {
+                    this.matchedMember = person;
                     return 1;
                     //om medlemskapet är ogiltigt
                 } else {

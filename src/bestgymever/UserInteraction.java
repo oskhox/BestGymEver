@@ -19,7 +19,7 @@ public class UserInteraction {
     public void ask() {
         try (Scanner input = new Scanner(System.in)) {
             boolean keepAsking = true;
-            //KONTROLL AV MEDLEMSKAP
+            //1. Kontroll av medlemskap
             while (keepAsking) {
                 System.out.println("Vill du kontrollera någons medlemskap? Skriv ja eller nej:");
                 String firstReply = input.nextLine();
@@ -38,18 +38,20 @@ public class UserInteraction {
                     //skriver ut beroende vad som returneras
                     switch (validationResponse) {
                         case 1 -> {
-                            System.out.println("Kunden är en nuvarande medlem. Årsavgiften är betald det senare året." +
-                                    " Incheckningen är registrerad i PT-filen.");
-                            MemberVisit m1 = new MemberVisit(); //skapar up MemberVisit-filen och låta konstruktorn göra sitt jobb.
+                            System.out.println("Kunden är en nuvarande medlem. Årsavgiften är betald det senare året.");
+                            //hämtar matchad person
+                            Person matched = c1.getMatchedMember();
+                            //skapar först upp MemberVisit-filen
+                            MemberVisit m1 = new MemberVisit();
+                            m1.addCheckIn(m1.getOutPath(), matched.getName(), matched.getPersonID());
                         }
                         case 2 ->
                                 System.out.println("Kunden är en före detta medlem. Årsavgiften betalades för mer än ett år sedan.");
-                        case 3 ->
-                                System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen..");
+                        case 3 -> System.out.println("Du skrev inte in något alls eller bara mellanslag. Pröva igen..");
                         case 4 ->
                                 System.out.println("Personen inte finns i filen och har sålunda aldrig varit medlem och är obehörig.");
                     }
-                    //AVSLUTA PROGRAMMET
+                    //2. Avsluta programmet
                 } else if (firstReply.equalsIgnoreCase("nej")) {
                     System.out.println("Vill du avsluta programmet, Skriv ja eller nej:");
                     String thirdReply = input.nextLine();

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class CheckMemberStatusTest {
@@ -14,6 +16,15 @@ public class CheckMemberStatusTest {
     Path testPath = Paths.get("test/bestgymever/test_data.txt");
     //anropar produktionsmetoden och skickar in testdata
     List<Person> list = c1.readFile(testPath);
+
+
+    //testar att inläsnings-path är korrekt genom skapa upp motsvarande path och jämföra
+    @Test
+    void testPath() {
+        //skapar upp en förväntad path för produktionsklassen
+        Path expectedPath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");
+        assertEquals(expectedPath, c1.getInpath());
+    }
 
     //kontrollerar antalet skapade personobjekt
     @Test
@@ -41,6 +52,24 @@ public class CheckMemberStatusTest {
         assertEquals("2024-08-04", person1.getDate());
     }
 
+    //kontrollerar att ett datum som är 3 månader gammalt är giltigt
+    @Test
+    void testCompareValidDate() {
+        LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String threeMonthsAgoString = threeMonthsAgo.format(format);
+        assertTrue(c1.compareDates(threeMonthsAgoString));
+    }
+
+    //kontrollerar att ett datum som är 24 månader gammalt är ogiltigt
+    @Test
+    void testCompareInvalidDate() {
+        LocalDate threeMonthsAgo = LocalDate.now().minusMonths(24);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String threeMonthsAgoString = threeMonthsAgo.format(format);
+        assertFalse(c1.compareDates(threeMonthsAgoString));
+    }
+
     //kontrollerar utskriften för giltig medlem
     @Test
     void testOutputValidMember() {
@@ -64,7 +93,7 @@ public class CheckMemberStatusTest {
     void testOutputIfEmptyInput() {
         assertEquals(3, c1.search(list, ""));
         assertEquals(3, c1.search(list, " "));
-        assertNotEquals(3, c1.search(list,"vadsomhelst"));
+        assertNotEquals(3, c1.search(list, "vadsomhelst"));
     }
 
     //kontrollerar utskriften för obehörig person
