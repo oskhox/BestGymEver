@@ -20,7 +20,7 @@ public class CheckMemberStatusTest {
 
     //testar att inläsnings-path är korrekt genom skapa upp motsvarande path och jämföra
     @Test
-    void testPath() {
+    final void testPath() {
         //skapar upp en förväntad path för produktionsklassen
         Path expectedPath = Paths.get("src/bestgymever/data_inlamningsuppg2.txt");
         assertEquals(expectedPath, c1.getInpath());
@@ -54,7 +54,7 @@ public class CheckMemberStatusTest {
 
     //kontrollerar att ett datum som är 3 månader gammalt är giltigt
     @Test
-    void testCompareValidDate() {
+    final void testCompareValidDate() {
         LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String threeMonthsAgoString = threeMonthsAgo.format(format);
@@ -63,7 +63,7 @@ public class CheckMemberStatusTest {
 
     //kontrollerar att ett datum som är 24 månader gammalt är ogiltigt
     @Test
-    void testCompareInvalidDate() {
+    final void testCompareInvalidDate() {
         LocalDate threeMonthsAgo = LocalDate.now().minusMonths(24);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String threeMonthsAgoString = threeMonthsAgo.format(format);
@@ -72,7 +72,7 @@ public class CheckMemberStatusTest {
 
     //kontrollerar terminalutskriften för giltig medlem
     @Test
-    void testOutputValidMember() {
+    final void testOutputValidMember() {
         assertEquals(1, c1.search(list, "7911061234"));
         assertNotEquals(2, c1.search(list, "7911061234"));
         assertNotEquals(3, c1.search(list, "7911061234"));
@@ -81,7 +81,7 @@ public class CheckMemberStatusTest {
 
     //kontrollerar terminalutskriften för tidigare medlem
     @Test
-    void testOutputPreviousMember() {
+    final void testOutputPreviousMember() {
         assertEquals(2, c1.search(list, "5711121234"));
         assertNotEquals(1, c1.search(list, "5711121234"));
         assertNotEquals(3, c1.search(list, "5711121234"));
@@ -90,7 +90,7 @@ public class CheckMemberStatusTest {
 
     //kontrollerar terminalutskriften vid tom inmatning eller blanksteg
     @Test
-    void testOutputIfEmptyInput() {
+    final void testOutputIfEmptyInput() {
         assertEquals(3, c1.search(list, ""));
         assertEquals(3, c1.search(list, " "));
         assertNotEquals(3, c1.search(list, "vadsomhelst"));
@@ -98,7 +98,7 @@ public class CheckMemberStatusTest {
 
     //kontrollerar terminalutskriften för obehörig person
     @Test
-    void testOutputUnauthorized() {
+    final void testOutputUnauthorized() {
         assertEquals(4, c1.search(list, "9001191234"));
         assertNotEquals(1, c1.search(list, "9001191234"));
         assertNotEquals(2, c1.search(list, "9001191234"));

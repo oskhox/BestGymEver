@@ -22,14 +22,14 @@ public class MemberVisitTest {
 
     //testar att path är korrekt genom skapa upp motsvarande path och jämföra
     @Test
-    void testRealPath() {
+    final void testRealPath() {
         //skapar upp en förväntad path för produktionsklassen
         assertEquals(realPath, m1.getOutPath());
     }
 
     //testar att utskriften är korrekt genom att skriva ut, läsa in och jämföra
     @Test
-    void testOutputString() {
+    final void testOutputString() {
         //skapar en tom sträng som ska innehålla det som läses in
         String lineInFile = "";
 
